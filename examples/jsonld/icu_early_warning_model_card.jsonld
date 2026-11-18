@@ -1,0 +1,125 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "codemeta": "https://w3id.org/codemeta/",
+    "fair4ml": "https://w3id.org/fair4ml#",
+    "cr": "http://mlcommons.org/croissant/",
+    "local": "urn:local:unmapped#"
+  },
+  "@type": "fair4ml:MLModel",
+  "schema:identifier": "https://github.com/evelyyyyynnnnn/2.0-Healthcare-Ai-Systems/tree/main/2-icu-early-warning",
+  "schema:name": "ICU Early-Warning Logistic Model (hypotension, 4-hour horizon)",
+  "schema:version": "1.0.0",
+  "schema:keywords": [
+    "clinical early warning",
+    "calibration",
+    "alarm burden",
+    "subject-grouped validation"
+  ],
+  "schema:headline": "A logistic early-warning model for hypotension on the MIMIC-IV open-access demo, reported with calibration and alarm burden rather than discrimination alone.",
+  "schema:description": "Predicts hypotension (mean arterial pressure < 65 mmHg) four hours ahead from 31 features derived from routine ICU charting. Observations are resampled onto a half-hourly grid without looking forward. The card reports calibration error and false alerts per 100 observations alongside AUROC, because a well-ranked but badly calibrated alarm is the failure mode this project exists to expose.\n",
+  "fair4ml:mlTask": [
+    "Binary classification",
+    "Time-series early warning"
+  ],
+  "fair4ml:modelCategory": [
+    "Supervised classification",
+    "Logistic regression"
+  ],
+  "schema:inLanguage": [
+    "en"
+  ],
+  "schema:license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "local:parameterSize": "31 coefficients",
+  "codemeta:developmentStatus": "Active",
+  "schema:dateCreated": "2026-09-06",
+  "schema:dateModified": "2026-09-06",
+  "schema:citation": "Du, Wenke (2026). Healthcare AI Systems (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24094763\n",
+  "schema:codeRepository": "https://github.com/evelyyyyynnnnn/2.0-Healthcare-Ai-Systems/tree/main/2-icu-early-warning",
+  "local:developmentLibrary": "scikit-learn",
+  "fair4ml:usageInstructions": "python -m pytest tests/ -q ; python -m data.fetch ; python -m src.demo --real\n",
+  "fair4ml:modelRisksBiasLimitations": [
+    "The cohort is a demonstration, not a study. About 100 ICU stays is enough to show the pipeline is sound and the comparison is fair; it is not enough to estimate population performance, and no clinical claim should rest on it.",
+    "Trained and evaluated on a single open-access demo extract of one US hospital system. Transfer to other sites is untested."
+  ],
+  "fair4ml:evaluationMetrics": [
+    "AUROC",
+    "AUPRC",
+    "Expected calibration error",
+    "False alerts per 100 observations at matched sensitivity"
+  ],
+  "fair4ml:evaluationResults": "Subject-grouped split: 94 training patients, 40 test patients, 5,303 test rows, target sensitivity 0.80. Logistic model: AUROC 0.7915, AUPRC 0.5911, expected calibration error 0.0446, 22.9 false alerts per 100 observations. Single-threshold alarm baseline on the same split: AUROC 0.7481, AUPRC 0.5727, expected calibration error 0.4158, 31.8 false alerts per 100 observations.\n",
+  "schema:softwareRequirements": [
+    "Python 3.11",
+    "scikit-learn"
+  ],
+  "schema:storageRequirements": [
+    "50 MB"
+  ],
+  "schema:memoryRequirements": [
+    "2 GB of RAM"
+  ],
+  "schema:operatingSystem": [
+    "Linux",
+    "macOS"
+  ],
+  "schema:distribution": [
+    {
+      "encodingFormat": "application/json",
+      "contentUrl": "https://github.com/evelyyyyynnnnn/2.0-Healthcare-Ai-Systems/blob/main/2-icu-early-warning/results/latest-real.json",
+      "contentSize": null,
+      "quantizationBits": null,
+      "quantizationMethod": null
+    }
+  ],
+  "fair4ml:trainedOn": [
+    {
+      "identifier": "https://doi.org/10.13026/dp1f-ex47",
+      "name": "PhysioNet MIMIC-IV Clinical Database Demo",
+      "description": "Open-access demo extract. 134 ICU stays built from 140 in the source files (6 skipped as too short); 24,304 gridded observations; 12,152 patient-hours. Source files are pinned by SHA-256 in data/MANIFEST.json.\n",
+      "url": "https://physionet.org/content/mimic-iv-demo/"
+    }
+  ],
+  "fair4ml:testedOn": [
+    {
+      "identifier": "https://doi.org/10.13026/dp1f-ex47",
+      "name": "PhysioNet MIMIC-IV Clinical Database Demo (held-out subjects)",
+      "description": "40 test patients, grouped by subject so that no patient appears in both training and test.\n"
+    }
+  ],
+  "fair4ml:evaluatedOn": [
+    {
+      "identifier": "https://doi.org/10.13026/dp1f-ex47",
+      "name": "PhysioNet MIMIC-IV Clinical Database Demo (held-out subjects)",
+      "description": "Same held-out subject split as testedOn."
+    }
+  ],
+  "schema:author": [
+    {
+      "name": "Wenke Du",
+      "identifier": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "fair4ml:sharedBy": [
+    {
+      "name": "Wenke Du",
+      "identifier": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "local:wasGeneratedBy": [
+    {
+      "trainingRegion": null,
+      "cloudProvider": null,
+      "duration": "under 1 minute",
+      "hardwareType": "CPU"
+    }
+  ],
+  "schema:sdPublisher": [
+    {
+      "name": "Wenke Du",
+      "url": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "schema:sdLicense": "https://www.apache.org/licenses/LICENSE-2.0",
+  "schema:schemaVersion": "0.1.0"
+}

@@ -1,0 +1,121 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "codemeta": "https://w3id.org/codemeta/",
+    "fair4ml": "https://w3id.org/fair4ml#",
+    "cr": "http://mlcommons.org/croissant/",
+    "local": "urn:local:unmapped#"
+  },
+  "@type": "fair4ml:MLModel",
+  "schema:identifier": "https://github.com/evelyyyyynnnnn/3.0-Financial-Ai-Systems/tree/main/5-volatility-forecasting",
+  "schema:name": "LSTM Realised-Volatility Forecaster (S&P 500)",
+  "schema:version": "1.0.0",
+  "schema:keywords": [
+    "realised volatility",
+    "time-series forecasting",
+    "lookahead bias",
+    "withheld metrics"
+  ],
+  "schema:headline": "An LSTM forecaster for realised volatility on S&P 500 daily prices, released with its performance metrics deliberately withheld.",
+  "schema:description": "Forecasts close-to-close realised volatility for ^GSPC from daily prices, 2010-2023. The committed run is released as a reproducible artefact, but its accuracy metrics are not reported: the feature scaler was fitted with fit_transform over the whole series, so every number the run produced is contaminated by lookahead. The card is included here precisely because it is the case the current schema cannot express.\n",
+  "fair4ml:mlTask": [
+    "Time-series regression"
+  ],
+  "fair4ml:modelCategory": [
+    "Supervised regression",
+    "LSTM"
+  ],
+  "schema:inLanguage": [
+    "en"
+  ],
+  "schema:license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "codemeta:developmentStatus": "Active",
+  "schema:dateCreated": "2026-09-09",
+  "schema:dateModified": "2026-09-09",
+  "schema:citation": "Du, Wenke (2026). Financial AI Systems (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24094767\n",
+  "schema:codeRepository": "https://github.com/evelyyyyynnnnn/3.0-Financial-Ai-Systems/tree/main/5-volatility-forecasting",
+  "local:developmentLibrary": "TensorFlow",
+  "fair4ml:usageInstructions": "python -m src.demo   # needs TensorFlow and network access to Yahoo Finance\n",
+  "fair4ml:modelRisksBiasLimitations": [
+    "No performance claim is made or should be inferred. The run that exists is known to be affected by lookahead through the feature scaler."
+  ],
+  "fair4ml:evaluationMetrics": [
+    "MSE",
+    "RMSE",
+    "MAE",
+    "R-squared"
+  ],
+  "schema:softwareRequirements": [
+    "Python 3.11",
+    "TensorFlow"
+  ],
+  "schema:storageRequirements": [
+    "100 MB"
+  ],
+  "schema:memoryRequirements": [
+    "4 GB of RAM"
+  ],
+  "schema:operatingSystem": [
+    "Linux",
+    "macOS"
+  ],
+  "schema:distribution": [
+    {
+      "encodingFormat": "application/json",
+      "contentUrl": "https://github.com/evelyyyyynnnnn/3.0-Financial-Ai-Systems/blob/main/5-volatility-forecasting/results/latest-real.json",
+      "contentSize": null,
+      "quantizationBits": null,
+      "quantizationMethod": null
+    }
+  ],
+  "fair4ml:trainedOn": [
+    {
+      "identifier": "https://finance.yahoo.com/quote/%5EGSPC/",
+      "name": "S&P 500 daily closing prices (^GSPC)",
+      "description": "Daily prices retrieved via yfinance, 2010-01-01 to 2023-12-31. Target is close-to-close realised volatility.\n",
+      "url": "https://finance.yahoo.com/quote/%5EGSPC/"
+    }
+  ],
+  "fair4ml:testedOn": [
+    {
+      "identifier": "https://finance.yahoo.com/quote/%5EGSPC/",
+      "name": "S&P 500 daily closing prices (^GSPC), held-out tail",
+      "description": "A chronological held-out split -- but see evaluationResults: the scaler was fitted across the whole series, so the split is not clean.\n"
+    }
+  ],
+  "fair4ml:evaluatedOn": [
+    {
+      "identifier": "https://finance.yahoo.com/quote/%5EGSPC/",
+      "name": "S&P 500 daily closing prices (^GSPC), held-out tail",
+      "description": "Same split as testedOn."
+    }
+  ],
+  "schema:author": [
+    {
+      "name": "Wenke Du",
+      "identifier": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "fair4ml:sharedBy": [
+    {
+      "name": "Wenke Du",
+      "identifier": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "local:wasGeneratedBy": [
+    {
+      "trainingRegion": null,
+      "cloudProvider": null,
+      "duration": "20 epochs",
+      "hardwareType": "CPU"
+    }
+  ],
+  "schema:sdPublisher": [
+    {
+      "name": "Wenke Du",
+      "url": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "schema:sdLicense": "https://www.apache.org/licenses/LICENSE-2.0",
+  "schema:schemaVersion": "0.1.0"
+}

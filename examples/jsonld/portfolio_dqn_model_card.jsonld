@@ -1,0 +1,117 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "codemeta": "https://w3id.org/codemeta/",
+    "fair4ml": "https://w3id.org/fair4ml#",
+    "cr": "http://mlcommons.org/croissant/",
+    "local": "urn:local:unmapped#"
+  },
+  "@type": "fair4ml:MLModel",
+  "schema:identifier": "https://github.com/evelyyyyynnnnn/3.0-Financial-Ai-Systems/blob/main/6-portfolio-optimization-engine/models/dqn_sb3.zip",
+  "schema:name": "DQN Portfolio Allocation Agent (5-asset daily)",
+  "schema:version": "1.0.0",
+  "schema:keywords": [
+    "reinforcement learning",
+    "portfolio allocation",
+    "in-sample evaluation",
+    "withheld metrics"
+  ],
+  "schema:headline": "A Deep Q-Network allocation agent over five ETFs, released with its performance metrics withheld because the train/test split was never applied.",
+  "schema:description": "Allocates daily across SPY, QQQ, IWM, GLD and TLT from a 30-day observation window, with a 0.001 per-trade cost. The trained agent is released as a reproducible artefact (models/dqn_sb3.zip), but its performance figures are not reported as evaluation results: `config['data']['train_test_split']` was declared in every YAML config and read by no code, so the environment loaded the whole 2010-2023 series and `evaluate()` scored the agent on the same data it trained on. The numbers that exist are training-set scores.\n",
+  "fair4ml:mlTask": [
+    "Sequential decision making",
+    "Portfolio allocation"
+  ],
+  "fair4ml:modelCategory": [
+    "Reinforcement learning",
+    "Deep Q-Network"
+  ],
+  "schema:inLanguage": [
+    "en"
+  ],
+  "schema:license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "codemeta:developmentStatus": "Active",
+  "schema:dateCreated": "2025-11-12",
+  "schema:dateModified": "2026-09-11",
+  "schema:citation": "Du, Wenke (2026). Financial AI Systems (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24094767\n",
+  "schema:codeRepository": "https://github.com/evelyyyyynnnnn/3.0-Financial-Ai-Systems/tree/main/6-portfolio-optimization-engine",
+  "local:developmentLibrary": "stable-baselines3",
+  "fair4ml:usageInstructions": "python -m src.demo   # loads models/dqn_sb3.zip\n",
+  "fair4ml:modelRisksBiasLimitations": [
+    "No performance claim is made or should be inferred. The agent was evaluated on its own training data; any comparison against the baselines below would be invalid.",
+    "Trained for 2,000 timesteps, which is short. Even a clean out-of-sample score from this run should not be read as a converged result.",
+    "Five US ETFs over one 2010-2023 window. No other market, period or asset class was tested."
+  ],
+  "fair4ml:evaluationMetrics": [
+    "Sharpe ratio",
+    "Sortino ratio",
+    "Calmar ratio",
+    "Maximum drawdown",
+    "Total return"
+  ],
+  "schema:softwareRequirements": [
+    "Python 3.11",
+    "stable-baselines3",
+    "gymnasium"
+  ],
+  "schema:operatingSystem": [
+    "Linux",
+    "macOS"
+  ],
+  "schema:distribution": [
+    {
+      "encodingFormat": "application/zip",
+      "contentUrl": "https://github.com/evelyyyyynnnnn/3.0-Financial-Ai-Systems/blob/main/6-portfolio-optimization-engine/models/dqn_sb3.zip",
+      "contentSize": 1679452
+    }
+  ],
+  "fair4ml:trainedOn": [
+    {
+      "identifier": "https://finance.yahoo.com/",
+      "name": "Daily OHLCV for SPY, QQQ, IWM, GLD, TLT",
+      "description": "Retrieved via yfinance, 2010-01-04 to 2023-12-29, 3,522 trading days. Cached in data/market_data.pkl.\n",
+      "url": "https://finance.yahoo.com/"
+    }
+  ],
+  "fair4ml:testedOn": [
+    {
+      "identifier": "https://finance.yahoo.com/",
+      "name": "Same series as trainedOn",
+      "description": "Not a held-out split. The declared train_test_split was never read, so training and evaluation used the same 2010-2023 series.\n"
+    }
+  ],
+  "fair4ml:evaluatedOn": [
+    {
+      "identifier": "https://finance.yahoo.com/",
+      "name": "Same series as trainedOn",
+      "description": "See evaluationResults."
+    }
+  ],
+  "schema:author": [
+    {
+      "name": "Wenke Du",
+      "identifier": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "fair4ml:sharedBy": [
+    {
+      "name": "Wenke Du",
+      "identifier": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "local:wasGeneratedBy": [
+    {
+      "cloudProvider": null,
+      "duration": "2000 timesteps",
+      "hardwareType": "CPU"
+    }
+  ],
+  "schema:sdPublisher": [
+    {
+      "name": "Wenke Du",
+      "url": "https://orcid.org/0009-0007-5579-234X"
+    }
+  ],
+  "schema:sdLicense": "https://www.apache.org/licenses/LICENSE-2.0",
+  "schema:schemaVersion": "0.1.0"
+}
